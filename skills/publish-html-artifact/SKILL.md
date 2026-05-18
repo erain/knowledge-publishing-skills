@@ -5,7 +5,9 @@ description: Publish a completed static HTML page or slide deck into the erain/k
 
 # Publish HTML Artifact
 
-Use this skill after an HTML artifact has been created and validated.
+Use this skill after an HTML artifact has been created and validated. This skill
+is agent-neutral: any coding agent with shell access, Git, and a checked-out
+hosting repository can follow it.
 
 ## Inputs To Determine
 
@@ -23,7 +25,8 @@ Use this skill after an HTML artifact has been created and validated.
 
 1. Confirm the source file exists and is a complete HTML document.
 2. Run any artifact-specific validator first, such as `knowledge-to-slides/scripts/validate_deck.py`.
-3. Run `scripts/publish.py` from this skill with explicit args.
+3. Run `scripts/publish.py` from this skill with explicit args. Use `--repo` and
+   `--base-url` when the defaults do not match the environment.
 4. Inspect the diff in the hosting repo.
 5. Commit and push the hosting repo changes.
 6. Wait for deployment when possible.
@@ -35,3 +38,9 @@ Use this skill after an HTML artifact has been created and validated.
 - `unlisted`: copies to `content/unlisted/<slug-or-token>/index.html`, deploys under `/u/<slug-or-token>/`, does not appear in the gallery. This is not security; anyone with the URL can view it.
 
 For private previews, use a future Vercel/Cloudflare integration instead of treating unlisted URLs as secrets.
+
+## Output Contract
+
+- Return the final URL.
+- Include the hosting repository commit hash or commit URL when available.
+- State whether the artifact was published as `public` or `unlisted`.

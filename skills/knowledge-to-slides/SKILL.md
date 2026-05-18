@@ -5,7 +5,9 @@ description: Turn what was learned from a coding session, repository, PR, incide
 
 # Knowledge To Slides
 
-Create one complete HTML file that can be published as a static artifact.
+Create one complete HTML file that can be published as a static artifact. This
+skill is agent-neutral: follow the workflow from any coding agent that can read
+files, edit HTML/CSS/SVG, and run the bundled validation script.
 
 ## Workflow
 
@@ -21,7 +23,8 @@ Create one complete HTML file that can be published as a static artifact.
 3. Use `assets/deck-template.html` as the structural baseline when useful.
 4. Make visuals directly in HTML/CSS/SVG. Avoid external CDNs and localhost assets.
 5. Save the deck as `index.html`.
-6. Run `scripts/validate_deck.py index.html`.
+6. Run `scripts/validate_deck.py index.html` from this skill directory, or pass
+   the full path to the generated deck.
 7. Use browser validation when available:
    - desktop 1280x720
    - mobile around 390x844
@@ -38,6 +41,13 @@ Create one complete HTML file that can be published as a static artifact.
 - Print stylesheet or acceptable browser print behavior.
 - Rich media must be inline SVG, CSS diagrams, or embedded data assets.
 - Display text must not overflow or overlap at desktop/mobile validation sizes.
+
+## Output Contract
+
+- Return the generated file path.
+- Summarize the story arc and any important validation notes.
+- If publishing is requested, hand the validated HTML path to
+  `publish-html-artifact`.
 
 ## Style Defaults
 
